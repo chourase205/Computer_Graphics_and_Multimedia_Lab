@@ -1,0 +1,47 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+def draw_circle(h, k, r):
+    # Determine the range of angles
+    theta = np.linspace(0, 2*np.pi, 100)
+
+    # Calculate corresponding (x, y) coordinates along the circumference
+    x_values = [h + r * np.cos(angle) for angle in theta]
+    y_values = [k + r * np.sin(angle) for angle in theta]
+
+    # Plot the points and connect them to form a circle
+    plt.plot(x_values, y_values, color='black')
+
+def draw_line(x1, y1, x2, y2):
+    # Determine the range of x values
+    x_range = np.linspace(x1, x2, 100)
+
+    # Calculate corresponding y values and plot the line
+    slope = (y2 - y1) / (x2 - x1)
+    intercept = y1 - slope * x1
+    y_values = [slope * x + intercept for x in x_range]
+    plt.plot(x_range, y_values, color='black')
+
+def draw_face():
+    # Draw head (circle)
+    draw_circle(0, 0, 5)
+
+    # Draw left eye (circle)
+    draw_circle(-2, 2, 0.5)
+
+    # Draw right eye (circle)
+    draw_circle(2, 2, 0.5)
+
+    # Draw mouth (line)
+    draw_line(-2, -2, 2, -2)
+
+    # Display the plot
+    plt.title('Face Drawing Using General Method')
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
+    plt.grid(True)
+    plt.axis('equal')
+    plt.show()
+
+# Example usage: Draw a face
+draw_face()
