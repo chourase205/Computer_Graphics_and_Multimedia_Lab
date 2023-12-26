@@ -1,0 +1,23 @@
+import matplotlib.pyplot as plt
+
+def draw_circle(h, k, r):
+    # Determine the range of angles
+    theta = range(0, 360)
+
+    # Calculate corresponding (x, y) coordinates along the circumference
+    x_values = [h + r * 1.0 * i / 180 for i in theta]
+    y_values = [k + r * 1.0 * i / 180 for i in theta]
+
+    # Plot the points and connect them to form a circle
+    plt.scatter(x_values, y_values, color='black')
+    plt.plot(x_values, y_values, color='black')
+
+    # Display the plot
+    plt.title('Circle Drawing Using General Method')
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
+    plt.grid(True)
+    plt.show()
+
+# Example usage: Draw a circle with center at (5, 5) and radius 3
+draw_circle(5, 5, 3)
