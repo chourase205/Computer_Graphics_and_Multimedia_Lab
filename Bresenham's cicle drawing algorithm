@@ -1,0 +1,50 @@
+import matplotlib.pyplot as plt
+
+def draw_circle(xc, yc, r):
+    x = r
+    y = 0
+    p = 1 - r
+
+    # Plot the initial points based on symmetry
+    plot_points(xc, yc, x, y)
+
+    while x > y:
+        y += 1
+
+        if p <= 0:
+            p = p + 2 * y + 1
+        else:
+            x -= 1
+            p = p + 2 * y - 2 * x + 1
+
+        # All the perimeter points have already been printed
+        if x < y:
+            break
+
+        # Plot the generated point and its reflection in the other octants
+        plot_points(xc, yc, x, y)
+
+        if x != y:
+            plot_points(xc, yc, y, x)
+
+def plot_points(xc, yc, x, y):
+    # Plot points based on symmetry in eight octants
+    plt.scatter(xc + x, yc - y, color='black')  # Octant 1
+    plt.scatter(xc - x, yc - y, color='black')  # Octant 4
+    plt.scatter(xc + x, yc + y, color='black')  # Octant 8
+    plt.scatter(xc - x, yc + y, color='black')  # Octant 5
+    plt.scatter(xc + y, yc - x, color='black')  # Octant 2
+    plt.scatter(xc - y, yc - x, color='black')  # Octant 3
+    plt.scatter(xc + y, yc + x, color='black')  # Octant 7
+    plt.scatter(xc - y, yc + x, color='black')  # Octant 6
+
+# Example usage: Draw a circle with center at (5, 5) and radius 3
+draw_circle(5, 5, 3)
+
+# Display the plot
+plt.title("Bresenham's Circle Drawing Algorithm")
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.grid(True)
+plt.axis('equal')
+plt.show()
