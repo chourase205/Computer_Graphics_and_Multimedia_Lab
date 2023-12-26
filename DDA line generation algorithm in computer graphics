@@ -1,0 +1,37 @@
+import matplotlib.pyplot as plt
+
+def dda_line(x1, y1, x2, y2):
+    # Calculate the differences in coordinates
+    dx = x2 - x1
+    dy = y2 - y1
+
+    # Determine the number of steps to take
+    steps = max(abs(dx), abs(dy))
+
+    # Calculate increments for x and y
+    x_increment = dx / steps
+    y_increment = dy / steps
+
+    # Initialize starting point
+    x = x1
+    y = y1
+
+    # Plot the starting point
+    plt.scatter(round(x), round(y), color='black')
+
+    # Iterate through each step and plot the next point
+    for _ in range(steps):
+        x += x_increment
+        y += y_increment
+        plt.scatter(round(x), round(y), color='black')
+
+    # Display the plot
+    plt.plot([x1, x2], [y1, y2], color='black')
+    plt.title('DDA Line Generation Algorithm')
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
+    plt.grid(True)
+    plt.show()
+
+# Example usage: Draw a line from (1, 2) to (7, 10)
+dda_line(1, 2, 7, 10)
