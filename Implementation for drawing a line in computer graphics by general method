@@ -1,0 +1,29 @@
+import matplotlib.pyplot as plt
+
+def draw_line(x1, y1, x2, y2):
+    # Calculate slope (m)
+    if x2 - x1 != 0:
+        m = (y2 - y1) / (x2 - x1)
+    else:
+        m = float('inf')  # Vertical line, slope is infinite
+
+    # Calculate y-intercept (b)
+    b = y1 - m * x1
+
+    # Determine the range of x values
+    x_range = range(min(x1, x2), max(x1, x2) + 1)
+
+    # Calculate corresponding y values and plot the points
+    y_values = [int(m * x + b) for x in x_range]
+    plt.scatter(x_range, y_values, color='black')
+
+    # Display the plot
+    plt.plot(x_range, y_values, color='black')
+    plt.title('Line Drawing Using General Method')
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
+    plt.grid(True)
+    plt.show()
+
+# Example usage: Draw a line from (2, 3) to (8, 10)
+draw_line(2, 3, 8, 10)
