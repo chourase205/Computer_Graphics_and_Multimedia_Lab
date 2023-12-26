@@ -1,0 +1,44 @@
+import matplotlib.pyplot as plt
+
+def bresenham_line(x1, y1, x2, y2):
+    # Calculate differences
+    dx = abs(x2 - x1)
+    dy = abs(y2 - y1)
+
+    # Determine direction of increments
+    sx = 1 if x1 < x2 else -1
+    sy = 1 if y1 < y2 else -1
+
+    # Initialize decision parameters
+    decision = 2 * dy - dx
+
+    # Initialize starting point
+    x = x1
+    y = y1
+
+    # Plot the starting point
+    plt.scatter(x, y, color='black')
+
+    # Iterate through each step and plot the next point
+    while x != x2 or y != y2:
+        plt.scatter(x, y, color='black')
+        decision2 = 2 * decision
+
+        if decision2 > -dy:
+            decision -= dy
+            x += sx
+
+        if decision2 < dx:
+            decision += dx
+            y += sy
+
+    # Display the plot
+    plt.plot([x1, x2], [y1, y2], color='black')
+    plt.title("Bresenham's Line Generation Algorithm")
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
+    plt.grid(True)
+    plt.show()
+
+# Example usage: Draw a line from (2, 3) to (8, 10)
+bresenham_line(2, 3, 8, 10)
